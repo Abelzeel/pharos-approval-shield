@@ -1,0 +1,75 @@
+{
+  "version": "0.1.0",
+  "lastUpdated": "2026-06-10",
+  "description": "Selectors and event topics that are statistically correlated with phishing, drainer kits, or unbounded approvals. The scanner matches wallet activity against this list and surfaces any hits with high priority.",
+  "signatures": [
+    {
+      "id": "infinite-erc20-approval",
+      "severity": "high",
+      "match": "Approval(address,address,uint256)",
+      "topic0": "0x8c5be1e5ebec7d5bd14f71427d1e84f3dd0314c0f7b2291e5b200ac8c7c3b925",
+      "name": "Infinite ERC-20 approval",
+      "description": "Approval event with value = 2^256-1 (0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff). A drainer can empty the entire balance any time.",
+      "recommendation": "Revoke unless the user is actively using this protocol right now."
+    },
+    {
+      "id": "permit2-default-approve",
+      "severity": "high",
+      "match": "function approve(address,address,uint160,uint48)",
+      "selector": "0x87517c45",
+      "name": "Permit2 approve (Uniswap)",
+      "description": "Permit2 allowances expire after a deadline but are routinely exploited via off-chain signature phishing (eth_sign / permit).",
+      "recommendation": "Check expiration; revoke if not actively used."
+    },
+    {
+      "id": "permit2-permit",
+      "severity": "critical",
+      "match": "function permit(address,address,uint160,uint48,uint48,bytes32,bytes)",
+      "selector": "0x9335f44f",
+      "name": "Permit2 permit (off-chain signature)",
+      "description": "Off-chain Permit2 signature. The user signed a message, not a tx. Drainers harvest these.",
+      "recommendation": "If seen and the user did not intentionally sign, treat as compromised. Move funds."
+    },
+    {
+      "id": "erc20-permit",
+      "severity": "high",
+      "match": "function permit(address,address,uint256,uint256,uint8,bytes32,bytes32)",
+      "selector": "0xd505accf",
+      "name": "ERC-2612 permit (off-chain signature)",
+      "description": "Off-chain approval signature. Phishing kits love this because the user pays no gas and sees no tx in their history.",
+      "recommendation": "If the user did not sign this, treat as compromised."
+    },
+    {
+      "id": "set-approval-for-all",
+      "severity": "high",
+      "match": "ApprovalForAll(address,address,bool)",
+      "topic0": "0x17307eab39ab6107e889d5b873ef0b21c4c5e6f9b3c4e8c5e9c5e9c5e9c5e9c5",
+      "name": "ERC-721/1155 setApprovalForAll",
+      "description": "Grants a contract operator rights over ALL NFTs of a collection. Drainers target this because one signature can empty the entire wallet.",
+      "recommendation": "Revoke unless actively trading on a known marketplace."
+    },
+    {
+      "id": "eth-sign-blank",
+      "severity": "critical",
+      "match": "personal_sign / eth_sign with empty or 0x data",
+      "name": "Blank eth_sign",
+      "description": "Some phishing kits ask the user to sign an empty hash. The signature can authorize anything depending on the contract the user interacts with next.",
+      "recommendation": "If found, the wallet is very likely compromised. Sweep funds to a new wallet."
+    },
+    {
+      "id": "increase-allowance",
+      "severity": "medium",
+      "match": "function increaseAllowance(address,uint256)",
+      "selector": "0x39509351",
+      "name": "ERC-20 increaseAllowance",
+      "description": "Bumps an existing allowance. Less commonly used in legitimate flows; sometimes used by drainers that initially set a small allowance then bump it.",
+      "recommendation": "Verify the spender. If unknown, revoke the underlying approval."
+    }
+  ],
+  "severityLevels": {
+    "critical": "Wallet is likely compromised. Move funds.",
+    "high": "Active drainer vector. Revoke immediately.",
+    "medium": "Suspicious pattern. User should review.",
+    "low": "Informational."
+  }
+}

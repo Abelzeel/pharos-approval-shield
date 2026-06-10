@@ -1,0 +1,22 @@
+{
+  "version": "0.1.0",
+  "lastUpdated": "2026-06-10",
+  "description": "Allowlist of known-good spenders on Pharos. A spender on this list is one an Agent can show to the user as 'seen in audited contexts' — NOT a guarantee of safety. Maintainers: add new entries only after manual review of contract source and audit reports.",
+  "spenders": [
+    {
+      "address": "0x0000000000000000000000000000000000000000",
+      "name": "Null Address (safelist sentinel)",
+      "category": "sentinel",
+      "note": "Zero address — used to revoke (set allowance to 0). Not a real spender."
+    }
+  ],
+  "categories": {
+    "sentinel": "Special addresses (zero address, dead address). Not real contracts.",
+    "dex": "Decentralized exchanges (audited)",
+    "lending": "Lending protocols (audited)",
+    "bridge": "Cross-chain bridges (audited)",
+    "nft-marketplace": "NFT marketplaces (audited)",
+    "staking": "Liquid staking / native staking contracts"
+  },
+  "howToSubmit": "Open a PR adding {address, name, category, auditUrl, addedDate}. Requires one maintainer review + at least one audit link or a verifiable deployment tx from a known team."
+}

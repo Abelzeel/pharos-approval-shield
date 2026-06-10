@@ -1,0 +1,76 @@
+{
+  "wallet": "0x1234567890abcdef1234567890abcdef12345678",
+  "network": "atlantic-testnet",
+  "chain_id": 688688,
+  "rpc_url": "https://atlantic.dplabs-internal.com",
+  "scanned_at": 1749517200,
+  "summary": {
+    "total_active_approvals": 3,
+    "infinite_approvals": 1,
+    "unknown_spenders": 2,
+    "operator_approvals": 0,
+    "phishing_hits": 0,
+    "revoke_plan_steps": 2,
+    "highest_risk_token": "USDC"
+  },
+  "approvals": [
+    {
+      "token": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "token_name": "USDC",
+      "spender": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "spender_name": "Unknown",
+      "allowance_raw": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+      "allowance_human": "infinite",
+      "is_infinite": true,
+      "risk": "high",
+      "reasons": [
+        "Infinite approval (uint256 max) — drainer can sweep full balance.",
+        "Spender is not on the known-good allowlist."
+      ],
+      "block_number": 0,
+      "tx_hash": ""
+    },
+    {
+      "token": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "token_name": "WETH",
+      "spender": "0xbeefcafebeefcafebeefcafebeefcafebeefcafe",
+      "spender_name": "Unknown",
+      "allowance_raw": "1000000000000000000",
+      "allowance_human": "1.0",
+      "is_infinite": false,
+      "risk": "medium",
+      "reasons": [
+        "Spender is not on the known-good allowlist."
+      ],
+      "block_number": 0,
+      "tx_hash": ""
+    }
+  ],
+  "permit2_approvals": [],
+  "operator_approvals": [],
+  "phishing_hits": [],
+  "revoke_plan": [
+    {
+      "token": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "spender": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "to": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "value": "0x0",
+      "data": "0x095ea7b3000000000000000000000000deadbeefdeadbeefdeadbeefdeadbeefdeadbeef0000000000000000000000000000000000000000000000000000000000000000",
+      "estimated_gas": 51234,
+      "priority": 1
+    },
+    {
+      "token": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "spender": "0xbeefcafebeefcafebeefcafebeefcafebeefcafe",
+      "to": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "value": "0x0",
+      "data": "0x095ea7b3000000000000000000000000beefcafebeefcafebeefcafebeefcafebeefcafe0000000000000000000000000000000000000000000000000000000000000000",
+      "estimated_gas": 49812,
+      "priority": 2
+    }
+  ],
+  "contract_scores": {
+    "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef": 25,
+    "0xbeefcafebeefcafebeefcafebeefcafebeefcafe": 40
+  }
+}
