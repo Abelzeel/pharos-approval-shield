@@ -1,0 +1,24 @@
+{
+  "name": "pharos-approval-shield",
+  "version": "1.0.0",
+  "description": "A defensive **Skill** for AI Agents operating on Pharos. Audits ERC-20\r allowances, Permit2 authorizations, ERC-721/1155 operator rights, and\r recent phishing signatures — then returns a prioritized, risk-scored\r report and a one-click revoke plan.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abelzeel/pharos-approval-shield.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Abelzeel/pharos-approval-shield/issues"
+  },
+  "homepage": "https://github.com/Abelzeel/pharos-approval-shield#readme",
+  "dependencies": {
+    "ethers": "^6.16.0"
+  }
+}
