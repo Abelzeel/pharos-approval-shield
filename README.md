@@ -1,4 +1,14 @@
-# Pharos Approval Shield
+<div align="center">
+
+![Pharos Approval Shield](logo-horizontal.png)
+
+**A defensive Skill for AI Agents operating on Pharos.**
+
+[🌐 Live demo](https://bs7k2wt8a4re.space.minimax.io) · [📦 Source](.) · [🏆 Hackathon](https://dorahacks.io/hackathon/pharos-phase1)
+
+</div>
+
+---
 
 A defensive **Skill** for AI Agents operating on Pharos. Audits ERC-20
 allowances, Permit2 authorizations, ERC-721/1155 operator rights, and
